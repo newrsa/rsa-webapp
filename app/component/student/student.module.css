@@ -1,0 +1,14 @@
+.student-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.student-container h1 {
+  color: rgb(80, 199, 80);
+  font-size: 2rem;
+}
+
+.student-container p {
+  color: #666;
+  font-size: 1.2rem;
+}
