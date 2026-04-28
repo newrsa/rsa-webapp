@@ -8,7 +8,7 @@ export default function Navigation() {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/component/student">Student</Link>
+          <Link href="/component/student">my Student</Link>
         </li>
         <li>
           <Link href="#">New-link</Link>
