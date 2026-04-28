@@ -10,6 +10,10 @@ export default function Navigation() {
         <li>
           <Link href="/component/student">Student</Link>
         </li>
+        <li>
+          <Link href="#">New-link</Link>
+        </li>
+        a
       </ul>
     </nav>
   );
