@@ -13,7 +13,7 @@ export default function Navigation() {
         <li>
           <Link href="#">New-link</Link>
         </li>
-        a
+      
       </ul>
     </nav>
   );
