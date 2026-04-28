@@ -1,14 +1,68 @@
 .student-container {
+  min-height: calc(100vh - 73px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
-  text-align: center;
+  background: linear-gradient(135deg, #f6f8ff 0%, #edf8f1 100%);
+}
+
+.student-card {
+  width: min(760px, 100%);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.08);
+  border: 1px solid #eef2f7;
+}
+
+.student-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.9rem;
 }
 
 .student-container h1 {
-  color: rgb(80, 199, 80);
-  font-size: 2rem;
+  color: #17314d;
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  margin: 0;
 }
 
-.student-container p {
-  color: #666;
-  font-size: 1.2rem;
+.student-subtitle {
+  color: #5f6b7a;
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+}
+
+.student-grid-item {
+  background: #f8fbff;
+  border: 1px solid #e3ecf8;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+
+.student-grid-item span {
+  display: block;
+  color: #667085;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.student-grid-item strong {
+  color: #1d2939;
+  font-size: 1rem;
 }
