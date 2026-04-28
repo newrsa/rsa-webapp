@@ -7,7 +7,7 @@ const page = () => {
     <div className={styles['student-container']}>
       <div className={styles['student-card']}>
         <div className={styles['student-badge']}>Student Portal</div>
-        <h1>Welcome back, Student</h1>
+        <h1>Programs Dashboard</h1>
         <p className={styles['student-subtitle']}>
           Track progress, upcoming tasks, and class performance in one place.
         </p>
@@ -22,8 +22,8 @@ const page = () => {
             <strong>7/8 done</strong>
           </div>
           <div className={styles['student-grid-item']}>
-            <span>Next Class</span>
-            <strong>Math • 10:30 AM</strong>
+            <span>Career Session</span>
+            <strong>Portfolio Review • 10:30 AM</strong>
           </div>
         </div>
       </div>
