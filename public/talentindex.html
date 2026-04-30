@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentIndex - AI-Native Campus Hiring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pb: #009bff;
+      --pv: #770bff;
+      --ps: #4cc3ae;
+      --bg: #090a0f;
+      --bg2: #0e1220;
+      --bg3: #131825;
+      --border: rgba(0, 155, 255, 0.18);
+      --white: #fcfcfc;
+      --muted: rgba(252, 252, 252, 0.62);
+      --font-head: "Syne", sans-serif;
+      --font-body: "DM Sans", sans-serif;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: radial-gradient(circle at top right, rgba(119, 11, 255, 0.2), transparent 45%), var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      backdrop-filter: blur(10px);
+      background: rgba(9, 10, 15, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-head);
+      font-weight: 800;
+    }
+    .logo-mark {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, var(--pb), var(--pv));
+      clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 56px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .eyebrow {
+      display: inline-block;
+      color: var(--pb);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      background: rgba(0, 155, 255, 0.08);
+    }
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.07;
+      margin-bottom: 14px;
+    }
+    h1 em { color: var(--pb); font-style: normal; }
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+    @media (max-width: 840px) {
+      .persona-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(0, 155, 255, 0.45); }
+    .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      background: rgba(0, 155, 255, 0.13);
+      font-size: 20px;
+    }
+    .role {
+      font-family: var(--font-head);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid;
+    }
+    .p-blue { color: var(--pb); border-color: rgba(0, 155, 255, 0.3); background: rgba(0, 155, 255, 0.08); }
+    .p-sea { color: var(--ps); border-color: rgba(76, 195, 174, 0.3); background: rgba(76, 195, 174, 0.08); }
+    .p-vio { color: #aa77ff; border-color: rgba(119, 11, 255, 0.35); background: rgba(119, 11, 255, 0.1); }
+
+    .panel {
+      margin-top: 28px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: none;
+    }
+    .panel.active { display: block; }
+    .panel h2 {
+      font-family: var(--font-head);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .panel p { color: var(--muted); margin-bottom: 16px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+
+    .metric {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .metric .k { color: var(--muted); font-size: 11px; margin-bottom: 4px; }
+    .metric .v { font-family: var(--font-head); font-size: 28px; font-weight: 800; }
+
+    .btn {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: var(--font-body);
+      background: var(--pb);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo"><span class="logo-mark"></span>TalentIndex</div>
+    <span style="font-size:12px;color:var(--muted)">AI-Native Campus Hiring</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">AI-Native Talent Intelligence</div>
+      <h1>Hiring for <em>potential</em>, not pedigree.</h1>
+      <p>Select a persona to preview role-specific workflows powered by the Talent Index engine.</p>
+    </section>
+
+    <section class="persona-grid">
+      <article class="card" data-role="candidate">
+        <div class="icon">🎓</div>
+        <div class="role">Candidate</div>
+        <div class="desc">Upload real-world proof of work, compute your Talent Index, and get matched to roles.</div>
+        <span class="pill p-blue">Profile + Signals + Matches</span>
+      </article>
+
+      <article class="card" data-role="hiring">
+        <div class="icon" style="background:rgba(119,11,255,.15)">🏢</div>
+        <div class="role">Hiring Manager</div>
+        <div class="desc">Define role weights, compare ranked candidates, and run AI-assisted interviews.</div>
+        <span class="pill p-vio">Golden Profile + Interview</span>
+      </article>
+
+      <article class="card" data-role="academia">
+        <div class="icon" style="background:rgba(76,195,174,.15)">🏛️</div>
+        <div class="role">Academia Partner</div>
+        <div class="desc">Onboard institutions, generate student links, and monitor placement outcomes.</div>
+        <span class="pill p-sea">Onboard + Placement Funnel</span>
+      </article>
+    </section>
+
+    <section id="candidate" class="panel active">
+      <h2>Candidate View</h2>
+      <p>Sample profile for Aarav Sharma with a computed VTI and capability distribution.</p>
+      <div class="grid">
+        <div class="metric"><div class="k">Talent Index (VTI)</div><div class="v" style="color:var(--ps)">78</div></div>
+        <div class="metric"><div class="k">Best Match Fit</div><div class="v" style="color:var(--pb)">83%</div></div>
+      </div>
+      <button class="btn" type="button">View matched opportunities</button>
+    </section>
+
+    <section id="hiring" class="panel">
+      <h2>Hiring Manager View</h2>
+      <p>Rank candidates by weighted signals and focus interviews on weak or uncertain dimensions.</p>
+      <div class="grid">
+        <div class="metric"><div class="k">Candidates in Pipeline</div><div class="v" style="color:var(--pb)">24</div></div>
+        <div class="metric"><div class="k">Strong Hire Bucket</div><div class="v" style="color:var(--ps)">8</div></div>
+      </div>
+      <button class="btn" type="button">Open AI interview guide</button>
+    </section>
+
+    <section id="academia" class="panel">
+      <h2>Academia Partner View</h2>
+      <p>Track cohort readiness, placement conversion, and verification status in one workspace.</p>
+      <div class="grid">
+        <div class="metric"><div class="k">Active Student Profiles</div><div class="v" style="color:var(--pb)">1250</div></div>
+        <div class="metric"><div class="k">Placement Rate</div><div class="v" style="color:var(--ps)">92%</div></div>
+      </div>
+      <button class="btn" type="button">Generate student upload link</button>
+    </section>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll(".card"));
+    const panels = Array.from(document.querySelectorAll(".panel"));
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const role = card.getAttribute("data-role");
+        panels.forEach((panel) => panel.classList.toggle("active", panel.id === role));
+      });
+    });
+  </script>
+</body>
+</html>
