@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '@/components';
-import { MetricCardData } from '../types/dashboard.types';
+import type { MetricCardData } from '../types/dashboard.types';
 
 export const StatsCard: React.FC<{ metric: MetricCardData }> = ({ metric }) => {
   return (

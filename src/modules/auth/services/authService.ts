@@ -1,4 +1,4 @@
-import { AuthUser, AuthCredentials } from '../types/auth.types';
+import type { AuthUser, AuthCredentials } from '../types/auth.types';
 
 export const authService = {
   async login(credentials: AuthCredentials): Promise<AuthUser> {

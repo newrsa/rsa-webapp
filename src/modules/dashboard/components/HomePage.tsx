@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
 import logoShort from '@/assets/nav_Short_Logo.png';
 import logoFull from '@/assets/rsa-logo.png';
 import iconPathway from '@/assets/nav_inline_icon_pathway.svg';
@@ -17,7 +16,6 @@ import iconHello from '@/assets/pathway_icon_hello.svg';
 import createNewBtn from '@/assets/pathway_create_new_aspiration.svg';
 
 import { UntitledPathView } from './UntitledPathView';
-import { BluebookView } from '@/modules/bluebook';
 
 export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '#home' }) => {
   const [isExpanded, setIsExpanded] = useState(false);

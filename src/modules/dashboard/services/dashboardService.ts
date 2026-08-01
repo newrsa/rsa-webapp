@@ -1,4 +1,4 @@
-import { AnalyticsSummary } from '../types/dashboard.types';
+import type { AnalyticsSummary } from '../types/dashboard.types';
 
 export const dashboardService = {
   async fetchAnalytics(): Promise<AnalyticsSummary> {

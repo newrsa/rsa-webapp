@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AnalyticsSummary } from '../types/dashboard.types';
+import type { AnalyticsSummary } from '../types/dashboard.types';
 import { dashboardService } from '../services/dashboardService';
 
 export function useDashboard() {

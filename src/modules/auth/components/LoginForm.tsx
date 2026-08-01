@@ -24,7 +24,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isLoading, error 
           label="Work Email Address"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           placeholder="developer@company.com"
           error={error || undefined}
         />
