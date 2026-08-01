@@ -24,7 +24,7 @@ jobs:
       - name: Set Deploy Path
         run: |
           echo "DEPLOY_DIR=/${BRANCH_NAME}/" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_BASE_PATH=/${BRANCH_NAME}" >> $GITHUB_ENV
+          echo "VITE_BASE_PATH=/${BRANCH_NAME}/" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -37,10 +37,10 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
+          VITE_BASE_PATH: ${{ env.VITE_BASE_PATH }}
 
       - name: Verify Build
-        run: ls -la out
+        run: ls -la dist
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -48,5 +48,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
+          local-dir: ./dist/
           server-dir: ${{ env.DEPLOY_DIR }}
