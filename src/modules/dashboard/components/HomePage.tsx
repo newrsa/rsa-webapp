@@ -17,7 +17,7 @@ import createNewBtn from '@/assets/pathway_create_new_aspiration.svg';
 
 import { UntitledPathView } from './UntitledPathView';
 
-export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '#home' }) => {
+export const HomePage: React.FC<{ currentRoute?: string }> = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [selectedNav, setSelectedNav] = useState('home');
