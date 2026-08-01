@@ -236,7 +236,7 @@ export const UntitledPathView: React.FC = () => {
                             "Join school's science club or the one near you",
                             "Score 80%+ in Maths and Science in 9th std this is important for Class 10"
                           ].map((txt, idx) => (
-                            <button key={idx} type="button" onClick={() => toggleTask1(idx)} className="flex items-center gap-3 px-3.5 py-3 rounded-lg bg-white dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] cursor-pointer text-left hover:border-[#3355f6] transition-colors">
+                            <button key={idx} type="button" onClick={() => toggleTask1(idx)} className="flex items-center gap-3 px-3.5 py-3 rounded-lg bg-slate-50 dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] cursor-pointer text-left hover:border-[#3355f6] transition-colors">
                               <span className={`w-[18px] h-[18px] shrink-0 rounded border-[1.5px] flex items-center justify-center ${tasksPhase1[idx] ? 'bg-[#3355f6] border-[#3355f6]' : 'border-slate-400 dark:border-[#3a3a48] bg-transparent'}`}>
                                 {tasksPhase1[idx] && <CheckIcon />}
                               </span>
@@ -270,7 +270,7 @@ export const UntitledPathView: React.FC = () => {
                             "Search for the best tuition class nearby",
                             "Attend all school practicals without fail — ICSE practical marks carry significant weight"
                           ].map((txt, idx) => (
-                            <button key={idx} type="button" onClick={() => toggleTask2(idx)} className="flex items-center gap-3 px-3.5 py-3 rounded-lg bg-white dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] cursor-pointer text-left hover:border-[#3355f6] transition-colors">
+                            <button key={idx} type="button" onClick={() => toggleTask2(idx)} className="flex items-center gap-3 px-3.5 py-3 rounded-lg bg-slate-50 dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] cursor-pointer text-left hover:border-[#3355f6] transition-colors">
                               <span className={`w-[18px] h-[18px] shrink-0 rounded border-[1.5px] flex items-center justify-center ${tasksPhase2[idx] ? 'bg-[#3355f6] border-[#3355f6]' : 'border-slate-400 dark:border-[#3a3a48] bg-transparent'}`}>
                                 {tasksPhase2[idx] && <CheckIcon />}
                               </span>
@@ -287,7 +287,7 @@ export const UntitledPathView: React.FC = () => {
               {/* Cards Tab */}
               {activeTab === 'cards' && (
                 <div>
-                  <div className="p-5 rounded-xl bg-white dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a]">
+                  <div className="p-5 rounded-xl bg-slate-50 dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a]">
                     <div className="flex items-center justify-between">
                       <h3 className="m-0 font-['Outfit',sans-serif] font-semibold text-[16px] text-slate-900 dark:text-white">Class 8–9 (Now) — Build Foundations</h3>
                       <span className="px-2.5 py-1 rounded-md font-['Outfit',sans-serif] font-semibold text-[11px] tracking-[0.12em] bg-[rgba(91,185,71,0.12)] border border-[#5bb947] text-[#5bb947]">ACTIVE</span>
@@ -295,7 +295,7 @@ export const UntitledPathView: React.FC = () => {
                     <p className="mt-2.5 mb-3.5 font-['Outfit',sans-serif] font-light text-[14px] text-slate-600 dark:text-[#9090b0]">Build basics in Physics &amp; Maths. Start hobby electronics. Score 80%+.</p>
                     <div className="font-['Outfit',sans-serif] text-[13px] text-slate-600 dark:text-[#9090b0]">{countPhase1} of 4 tasks complete</div>
                   </div>
-                  <div className="mt-4 p-5 rounded-xl bg-white dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a]">
+                  <div className="mt-4 p-5 rounded-xl bg-slate-50 dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a]">
                     <div className="flex items-center justify-between">
                       <h3 className="m-0 font-['Outfit',sans-serif] font-semibold text-[16px] text-slate-900 dark:text-white">Class 10 — ICSE Board Exams</h3>
                       <span className="px-2.5 py-1 rounded-md font-['Outfit',sans-serif] font-semibold text-[11px] tracking-[0.12em] bg-[rgba(232,163,61,0.12)] border border-[#e8a33d] text-[#e8a33d]">UP NEXT</span>
@@ -350,7 +350,7 @@ export const UntitledPathView: React.FC = () => {
         className="w-[1px] shrink-0 bg-[#272735] relative cursor-col-resize group"
         onMouseDown={() => setIsResizing(0)}
       >
-        <div className={`absolute inset-y-0 -left-1.5 -right-1.5 z-30 ${isResizing === 0 ? 'bg-[#3355f6]/50' : 'group-hover:bg-white/10'} transition-colors`} />
+        <div className={`absolute inset-y-0 -left-1.5 -right-1.5 z-30 ${isResizing === 0 ? 'bg-[#3355f6]/50' : 'group-hover:bg-slate-50 dark:bg-white/10'} transition-colors`} />
       </div>
 
       {/* ================= RSA ENGINE ================= */}
@@ -394,8 +394,8 @@ export const UntitledPathView: React.FC = () => {
                     <img src={imgPhd} alt="" className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/85 via-black/40"></div>
                     <div className="absolute left-4 right-4 bottom-3.5">
-                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-white">PhD in Physics</p>
-                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#9090b0] line-clamp-3">Explore the mysteries of the universe.</p>
+                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-[#ffffff]">PhD in Physics</p>
+                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#8f8fae] line-clamp-3">Explore the mysteries of the universe.</p>
                     </div>
                   </div>
                 </button>
@@ -404,8 +404,8 @@ export const UntitledPathView: React.FC = () => {
                     <img src={imgEng} alt="" className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/85 via-black/40"></div>
                     <div className="absolute left-4 right-4 bottom-3.5">
-                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-white">Electronics Engineer</p>
-                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#9090b0] line-clamp-3">Turn ideas into innovative technology.</p>
+                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-[#ffffff]">Electronics Engineer</p>
+                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#8f8fae] line-clamp-3">Turn ideas into innovative technology.</p>
                     </div>
                   </div>
                 </button>
@@ -414,8 +414,8 @@ export const UntitledPathView: React.FC = () => {
                     <img src={imgClinical} alt="" className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/85 via-black/40"></div>
                     <div className="absolute left-4 right-4 bottom-3.5">
-                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-white">Clinical Researcher</p>
-                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#9090b0] line-clamp-3">Improve lives through scientific discovery.</p>
+                      <p className="m-0 font-['Outfit',sans-serif] font-bold text-[14px] text-[#ffffff]">Clinical Researcher</p>
+                      <p className="m-0 mt-1 font-['Outfit',sans-serif] font-light text-[13px] leading-[1.35] text-[#8f8fae] line-clamp-3">Improve lives through scientific discovery.</p>
                     </div>
                   </div>
                 </button>
@@ -483,7 +483,7 @@ export const UntitledPathView: React.FC = () => {
                       </div>
 
                       <div className="mt-[16px] flex flex-wrap gap-[8px]">
-                        <button className="px-[14px] py-[8px] rounded-full border border-slate-300 dark:border-[#2b2b3a] bg-transparent text-slate-900 dark:text-white font-['Outfit',sans-serif] font-normal text-[13px] cursor-pointer hover:bg-white/5 transition-colors">
+                        <button className="px-[14px] py-[8px] rounded-full border border-slate-300 dark:border-[#2b2b3a] bg-transparent text-slate-900 dark:text-white font-['Outfit',sans-serif] font-normal text-[13px] cursor-pointer hover:bg-slate-50 dark:bg-white/5 transition-colors">
                           Show detailed roadmap
                         </button>
                         <button
@@ -510,7 +510,7 @@ export const UntitledPathView: React.FC = () => {
 
         {/* Composer */}
         <div className="px-6 pb-5 lg:px-10 lg:pb-5 shrink-0">
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-[#0f0f18] border border-[#00494a]">
+          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f18] border border-[#00494a]">
             <button type="button" className="bg-transparent border-0 p-0 cursor-pointer">
               <img src={iconAttach} alt="Attach" className="w-7 h-7 block" />
             </button>
@@ -550,7 +550,7 @@ export const UntitledPathView: React.FC = () => {
             className="w-[1px] shrink-0 bg-[#272735] relative cursor-col-resize group"
             onMouseDown={() => setIsResizing(1)}
           >
-            <div className={`absolute inset-y-0 -left-1.5 -right-1.5 z-30 ${isResizing === 1 ? 'bg-[#3355f6]/50' : 'group-hover:bg-white/10'} transition-colors`} />
+            <div className={`absolute inset-y-0 -left-1.5 -right-1.5 z-30 ${isResizing === 1 ? 'bg-[#3355f6]/50' : 'group-hover:bg-slate-50 dark:bg-white/10'} transition-colors`} />
           </div>
           <section className="relative flex flex-col shrink min-w-0 transition-none" style={{ width: `${worklabWidth}%` }}>
 
@@ -590,7 +590,7 @@ export const UntitledPathView: React.FC = () => {
                   { label: 'Reports (3)', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6177FF" strokeWidth="1.6"><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4M9 12h6M9 16h6" strokeLinecap="round" /></svg> },
                   { label: 'Insights (4)', icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6177FF" strokeWidth="1.6"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2" strokeLinecap="round" /></svg> }
                 ].map((item, i) => (
-                  <button key={i} type="button" className="flex flex-col gap-5 p-4 rounded-xl bg-white dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] text-left cursor-pointer hover:border-[#3355f6] transition-colors">
+                  <button key={i} type="button" className="flex flex-col gap-5 p-4 rounded-xl bg-slate-50 dark:bg-[#0f0f18] border border-slate-200 dark:border-[#1e1e2a] text-left cursor-pointer hover:border-[#3355f6] transition-colors">
                     {item.icon}
                     <span className="font-['Outfit',sans-serif] font-medium text-[14px] text-slate-800 dark:text-[#e6e6ee]">{item.label}</span>
                   </button>
@@ -600,7 +600,7 @@ export const UntitledPathView: React.FC = () => {
 
             {/* Worklab Composer */}
             <div className="px-7 pb-5 shrink-0">
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-[#0f0f18] border border-[#00494a]">
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0f18] border border-[#00494a]">
                 <button type="button" className="bg-transparent border-0 p-0 cursor-pointer">
                   <img src={iconAttach} alt="Attach" className="w-7 h-7 block" />
                 </button>

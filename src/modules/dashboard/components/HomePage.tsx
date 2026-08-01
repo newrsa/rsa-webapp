@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logoShort from '@/assets/nav_Short_Logo.png';
 import logoFull from '@/assets/rsa-logo.png';
 import logoFullLight from '@/assets/rsa-black-logo.png';
@@ -18,10 +18,17 @@ import createNewBtn from '@/assets/pathway_create_new_aspiration.svg';
 
 import { UntitledPathView } from './UntitledPathView';
 
-export const HomePage: React.FC<{ currentRoute?: string }> = () => {
+export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isDark, setIsDark] = useState(true);
-  const [selectedNav, setSelectedNav] = useState('home');
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') !== 'light';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
+
+  const [selectedNav, setSelectedNav] = useState(currentRoute === '#untitled-path' ? 'pathway' : 'home');
   const [isPathwayActive, setIsPathwayActive] = useState(false);
 
   const navItems = [
@@ -33,10 +40,10 @@ export const HomePage: React.FC<{ currentRoute?: string }> = () => {
   ];
 
   return (
-    <div className={`h-screen w-screen overflow-hidden flex bg-white dark:bg-[#0e0f13] m-0 p-0 font-['Outfit',sans-serif] ${isDark ? 'dark' : ''}`}>
+    <div className={`h-screen w-screen overflow-hidden flex bg-slate-50 dark:bg-[#0e0f13] m-0 p-0 font-['Outfit',sans-serif] ${isDark ? 'dark' : ''}`}>
 
       {/* Sidebar */}
-      <aside className={`h-full shrink-0 relative z-20 flex flex-col bg-white dark:bg-black transition-[width] duration-200 ease-out overflow-hidden ${isExpanded ? 'w-[224px]' : 'w-[115px]'}`}>
+      <aside className={`h-full shrink-0 relative z-20 flex flex-col bg-slate-50 dark:bg-black transition-[width] duration-200 ease-out overflow-hidden ${isExpanded ? 'w-[224px]' : 'w-[115px]'}`}>
 
         {/* Sidebar Body */}
         <div className={`flex flex-col flex-1 ${isExpanded ? 'py-[28px] px-5 items-stretch' : 'py-6 items-center'}`}>
@@ -59,12 +66,12 @@ export const HomePage: React.FC<{ currentRoute?: string }> = () => {
                   key={item.id}
                   type="button"
                   onClick={() => setSelectedNav(item.id)}
-                  className={`group relative flex items-center border-0 rounded-lg cursor-pointer text-slate-900 dark:text-white font-medium text-[14px] transition-colors duration-150 ${isExpanded ? 'w-full justify-start px-3.5 h-[52px]' : 'w-[65px] h-[52px] justify-center'} ${selectedNav === item.id ? 'bg-[#3355f6]' : 'bg-transparent hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  className={`group relative flex items-center border-0 rounded-lg cursor-pointer text-slate-900 dark:text-white font-medium text-[14px] transition-colors duration-150 ${isExpanded ? 'w-full justify-start px-3.5 h-[52px]' : 'w-[65px] h-[52px] justify-center'} ${selectedNav === item.id ? 'bg-[#3355f6] text-white dark:text-white' : 'bg-transparent hover:bg-slate-100 dark:hover:bg-white/5'}`}
                 >
                   <span className="relative inline-flex items-center justify-center">
                     <img src={item.icon} alt="" className="w-5 h-5 block dark:invert-0 invert" />
                     {!isExpanded && (
-                      <span className="absolute left-1/2 bottom-[calc(100%+6px)] -translate-x-1/2 bg-[#3d3d45] text-white font-normal text-[13px] rounded px-2.5 py-1.5 whitespace-nowrap z-50 shadow-[0_4px_12px_rgba(0,0,0,0.25)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                      <span className="absolute left-1/2 bottom-[calc(100%+6px)] -translate-x-1/2 bg-[#3d3d45] text-[#ffffff] font-normal text-[13px] rounded px-2.5 py-1.5 whitespace-nowrap z-50 shadow-[0_4px_12px_rgba(0,0,0,0.25)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                         {item.label}
                       </span>
                     )}
@@ -82,7 +89,7 @@ export const HomePage: React.FC<{ currentRoute?: string }> = () => {
               {isExpanded && <div className="text-slate-900 dark:text-white text-sm font-medium">User Profile</div>}
             </div>
 
-            <button type="button" className="w-10 h-10 p-0 bg-transparent border-0 cursor-pointer flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors">
+            <button type="button" className="w-10 h-10 p-0 bg-transparent border-0 cursor-pointer flex items-center justify-center hover:bg-slate-50 dark:bg-white/10 rounded-lg transition-colors">
               <img src={iconSettings} alt="Settings" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity" />
             </button>
           </div>
@@ -98,7 +105,7 @@ export const HomePage: React.FC<{ currentRoute?: string }> = () => {
           type="button"
           aria-label="Toggle navigation"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="absolute z-40 left-0 top-[80px] -translate-x-1/2 w-4 h-6 p-0 border-0 bg-white dark:bg-black cursor-pointer flex items-center justify-center rounded-r shadow-[2px_0_4px_rgba(0,0,0,0.5)] transition-transform"
+          className="absolute z-40 left-0 top-[80px] -translate-x-1/2 w-4 h-6 p-0 border-0 bg-slate-50 dark:bg-black cursor-pointer flex items-center justify-center rounded-r shadow-[2px_0_4px_rgba(0,0,0,0.5)] transition-transform"
         >
           <img src={iconExpandCollapse} alt="" className={`w-4 h-2.5 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
         </button>

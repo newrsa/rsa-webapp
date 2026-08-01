@@ -4,6 +4,7 @@ import signupHeroPng from '@/assets/signup-hero.png';
 import titleBarSvg from '@/assets/title-bar.svg';
 import toastBgSvg from '@/assets/toast-bg.svg';
 import rsaLogoPng from '@/assets/rsa-logo.png';
+import rsaBlackLogoPng from '@/assets/rsa-black-logo.png';
 
 /* ── Aspirational copy data ───────────────────────────────────── */
 interface AspirationalMessage {
@@ -30,6 +31,13 @@ export const SignUpPage: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [aspIndex, setAspIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') !== 'light';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -159,7 +167,7 @@ export const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#0e0f13] m-0 p-0 font-['DM_Sans',sans-serif]">
+    <div className={`flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#0e0f13] m-0 p-0 font-['DM_Sans',sans-serif] ${isDark ? 'dark' : ''}`}>
 
       {/* Toast Notification (Absolute Overlay) */}
       {toastVisible && (
@@ -168,43 +176,60 @@ export const SignUpPage: React.FC = () => {
             className="absolute inset-0 -z-10 bg-cover bg-left bg-no-repeat opacity-90"
             style={{ backgroundImage: `url('${toastBgSvg}')` }}
           />
-          <p className="m-0 text-left font-['DM_Sans',sans-serif] font-semibold text-[14px] text-white">
+          <p className="m-0 text-left font-['DM_Sans',sans-serif] font-semibold text-[14px] text-slate-900 dark:text-white">
             A 6-digit code will be sent to this number. Enter it below to continue.
           </p>
         </div>
       )}
 
       {/* Left Sidebar (Fixed 115px) */}
-      <aside className="w-[115px] h-full shrink-0 border-r border-[#272735] relative z-20 hidden md:block bg-[#0e0f13]">
-        <img src={primaryNavSvg} alt="" className="w-full h-full object-contain object-left" />
+      <aside className="w-[115px] h-full shrink-0 border-r border-slate-300 dark:border-[#272735] relative z-20 hidden md:block bg-slate-50 dark:bg-[#0e0f13]">
+        <img src={primaryNavSvg} alt="" className="w-full h-full object-contain object-left dark:invert-0 invert" />
       </aside>
 
       {/* Main Container */}
       <div className="flex flex-col flex-1 relative overflow-hidden min-h-0">
         {/* Top Title Bar */}
-        <header className="h-[67px] w-full shrink-0 relative z-10 flex items-center justify-end bg-[#0e0f13]">
-          <img className="absolute inset-0 w-full h-full object-cover object-right" src={titleBarSvg} alt="" />
+        <header className="h-[67px] w-full shrink-0 relative z-10 flex items-center justify-end bg-slate-50 dark:bg-[#0e0f13]">
+          <img className="absolute inset-0 w-full h-full object-cover object-right dark:opacity-100 opacity-5" src={titleBarSvg} alt="" />
+          <button
+            type="button"
+            className="relative z-10 flex items-center gap-2 border-0 rounded-full bg-slate-200 dark:bg-[#2c2e35] p-1 mr-[34px] cursor-pointer"
+            onClick={() => setIsDark(!isDark)}
+            aria-label="Toggle theme"
+          >
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${isDark ? 'bg-[#3355f6]' : 'bg-transparent'}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill={isDark ? "#fff" : "transparent"} stroke={isDark ? "#fff" : "#9090b0"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </span>
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${!isDark ? 'bg-[#3355f6]' : 'bg-transparent'}`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill={!isDark ? "#fff" : "transparent"} stroke={!isDark ? "#fff" : "#9090b0"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+              </svg>
+            </span>
+          </button>
         </header>
 
         {/* 50/50 Split Form & Hero */}
         <div ref={splitContainerRef} className="flex flex-col md:flex-row flex-1 w-full relative overflow-hidden min-h-0 responsive-scale">
 
           {/* Left Form Section (Strictly no scroll, perfectly centered) */}
-          <section className="w-full md:w-1/2 flex flex-col items-center justify-center bg-[#0e0f13] relative z-10 px-4 py-2 overflow-hidden min-h-0">
+          <section className="w-full md:w-1/2 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#0e0f13] relative z-10 px-4 py-2 overflow-hidden min-h-0">
 
             <div className="w-full max-w-[434px] flex flex-col justify-center">
 
               {/* Logo above the box */}
               <div className="mb-4 w-[238px] h-[32px] shrink-0">
-                <img src={rsaLogoPng} alt="RightStepAhead" className="h-full w-auto object-contain block" />
+                <img src={isDark ? rsaLogoPng : rsaBlackLogoPng} alt="RightStepAhead" className="h-full w-auto object-contain block" />
               </div>
 
               {/* Form Card Box */}
-              <div className="border border-[#272735] rounded-xl p-4 lg:p-6 flex flex-col justify-center bg-[#0B0F17] shrink-0 w-full">
-                <h1 className="m-0 font-['Outfit',sans-serif] font-semibold text-xl lg:text-2xl tracking-[-0.192px] text-[#f8f8fc]">
+              <div className="border border-slate-300 dark:border-[#272735] rounded-xl p-4 lg:p-6 flex flex-col justify-center bg-white dark:bg-[#0B0F17] shrink-0 w-full">
+                <h1 className="m-0 font-['Outfit',sans-serif] font-semibold text-xl lg:text-2xl tracking-[-0.192px] text-slate-900 dark:text-[#f8f8fc]">
                   Decoding Aspirations
                 </h1>
-                <p className="mt-1 lg:mt-2 w-full max-w-[277px] font-['Outfit',sans-serif] text-sm lg:text-base tracking-[-0.144px] text-[#f8f8fc]">
+                <p className="mt-1 lg:mt-2 w-full max-w-[277px] font-['Outfit',sans-serif] text-sm lg:text-base tracking-[-0.144px] text-slate-900 dark:text-[#f8f8fc]">
                   Sign up using your email address or mobile number
                 </p>
 
@@ -236,10 +261,10 @@ export const SignUpPage: React.FC = () => {
 
                 {/* Mobile / OTP field */}
                 <div className="mt-4">
-                  <label className="block mb-1.5 font-['Outfit',sans-serif] font-medium text-[13px] lg:text-[14px] text-[#f8f8fc]" htmlFor="mobile">
+                  <label className="block mb-1.5 font-['Outfit',sans-serif] font-medium text-[13px] lg:text-[14px] text-slate-900 dark:text-[#f8f8fc]" htmlFor="mobile">
                     Enter Your Mobile Number
                   </label>
-                  <div className="flex items-center bg-[#08081a] border border-[#393948] rounded px-3 h-10 lg:h-11">
+                  <div className="flex items-center bg-slate-50 dark:bg-[#08081a] border border-slate-300 dark:border-[#393948] rounded px-3 h-10 lg:h-11">
                     <input
                       ref={inputRef}
                       id="mobile"
@@ -250,7 +275,7 @@ export const SignUpPage: React.FC = () => {
                       autoComplete="tel"
                       value={mobileValue}
                       onChange={handleInput}
-                      className="w-full bg-transparent border-0 outline-none font-['DM_Sans',sans-serif] text-[14px] leading-[18px] text-[#e8e8f2] placeholder-[#6b6b76]"
+                      className="w-full bg-transparent border-0 outline-none font-['DM_Sans',sans-serif] text-[14px] leading-[18px] text-slate-900 dark:text-[#e8e8f2] placeholder-slate-400 dark:placeholder-[#6b6b76]"
                     />
                   </div>
                 </div>
@@ -259,7 +284,7 @@ export const SignUpPage: React.FC = () => {
                 {otpSent && (
                   <div className="flex items-center justify-between gap-2 mt-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-['DM_Sans',sans-serif] text-[11px] lg:text-[12px] text-[#6b6b76]">Didn't receive it?</span>
+                      <span className="font-['DM_Sans',sans-serif] text-[11px] lg:text-[12px] text-slate-400 dark:text-[#6b6b76]">Didn't receive it?</span>
                       <button type="button" className="bg-transparent border-0 p-0 cursor-pointer font-['Outfit',sans-serif] font-semibold text-[11px] lg:text-[12px] text-[#6177ff] hover:underline" onClick={handleResend}>
                         Resend OTP
                       </button>
@@ -272,7 +297,7 @@ export const SignUpPage: React.FC = () => {
                 <button
                   ref={otpBtnRef}
                   type="button"
-                  className="w-full flex items-center justify-center border-0 rounded h-10 lg:h-11 mt-5 bg-[#3355f6] text-white font-['Outfit',sans-serif] font-bold text-[14px] lg:text-[15px] cursor-pointer shadow-[0_1px_0.25px_rgba(29,41,61,0.02)] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#2541cc] transition-colors"
+                  className="w-full flex items-center justify-center border-0 rounded h-10 lg:h-11 mt-5 bg-[#3355f6] text-slate-900 dark:text-white font-['Outfit',sans-serif] font-bold text-[14px] lg:text-[15px] cursor-pointer shadow-[0_1px_0.25px_rgba(29,41,61,0.02)] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#2541cc] transition-colors"
                   disabled={isDisabled}
                   onClick={handleAction}
                 >
@@ -281,7 +306,7 @@ export const SignUpPage: React.FC = () => {
 
                 {/* Footer Inside Card */}
                 <div className="flex items-center justify-between mt-5 shrink-0">
-                  <div className="flex items-center gap-1 font-['DM_Sans',sans-serif] text-[11px] lg:text-[12px] text-[#6b6b76]">
+                  <div className="flex items-center gap-1 font-['DM_Sans',sans-serif] text-[11px] lg:text-[12px] text-slate-400 dark:text-[#6b6b76]">
                     Already have an account? <a className="font-['Outfit',sans-serif] font-semibold text-[11px] lg:text-[12px] text-[#6177ff] no-underline hover:underline ml-1" href="#signin">Sign In</a>
                   </div>
                   <a className="font-['Outfit',sans-serif] font-semibold text-[11px] lg:text-[12px] text-[#6177ff] no-underline hover:underline" href="#">Forgot Password?</a>
@@ -291,7 +316,7 @@ export const SignUpPage: React.FC = () => {
           </section>
 
           {/* Right Hero Section */}
-          <section className="flex-1 w-1/2 h-full relative overflow-hidden border-l border-[#272735] hidden md:block bg-[#0e0f13]">
+          <section className="flex-1 w-1/2 h-full relative overflow-hidden border-l border-slate-300 dark:border-[#272735] hidden md:block bg-slate-50 dark:bg-[#0e0f13]">
             {/* Edge-to-edge cover image */}
             <img className="absolute inset-0 w-full h-full object-cover opacity-[0.35]" src={signupHeroPng} alt="Student looking ahead" />
             {/* Gradient Overlay */}
@@ -304,10 +329,10 @@ export const SignUpPage: React.FC = () => {
             >
               <div className="w-full max-w-[637px]">
                 <div className={`transition-opacity duration-300 ease-out ${isFading ? 'opacity-0' : 'opacity-100'}`}>
-                  <h2 className="m-0 text-white font-['Outfit',sans-serif] font-bold text-[24px] lg:text-[40px] leading-[1.2] tracking-[-0.5px]">
+                  <h2 className="m-0 text-slate-900 dark:text-white font-['Outfit',sans-serif] font-bold text-[24px] lg:text-[40px] leading-[1.2] tracking-[-0.5px]">
                     {MESSAGES[aspIndex].title}
                   </h2>
-                  <p className="mt-2 lg:mt-4 text-white font-['Outfit',sans-serif] font-medium text-[16px] lg:text-[24px] leading-[1.35]">
+                  <p className="mt-2 lg:mt-4 text-slate-900 dark:text-white font-['Outfit',sans-serif] font-medium text-[16px] lg:text-[24px] leading-[1.35]">
                     {MESSAGES[aspIndex].sub}
                   </p>
                 </div>
@@ -317,7 +342,7 @@ export const SignUpPage: React.FC = () => {
                       key={idx}
                       type="button"
                       aria-label={`Message ${idx + 1}`}
-                      className={`block h-[3px] border-0 p-0 rounded-full cursor-pointer transition-all duration-300 ${idx === aspIndex ? 'w-[12px] bg-[#3355f6]' : 'w-[8px] bg-white/40'
+                      className={`block h-[3px] border-0 p-0 rounded-full cursor-pointer transition-all duration-300 ${idx === aspIndex ? 'w-[12px] bg-[#3355f6]' : 'w-[8px] bg-slate-50 dark:bg-white/40'
                         }`}
                       onClick={() => handlePip(idx)}
                     />
