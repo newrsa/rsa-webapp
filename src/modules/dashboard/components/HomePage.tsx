@@ -20,7 +20,8 @@ import { UntitledPathView } from './UntitledPathView';
 export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '#home' }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  const [selectedNav, setSelectedNav] = useState('pathway');
+  const [selectedNav, setSelectedNav] = useState('home');
+  const [isPathwayActive, setIsPathwayActive] = useState(false);
 
   const navItems = [
     { id: 'pathway', label: 'Pathway', icon: iconPathway },
@@ -40,10 +41,14 @@ export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '
         <div className={`flex flex-col flex-1 ${isExpanded ? 'py-[28px] px-5 items-stretch' : 'py-6 items-center'}`}>
 
           {/* Logo */}
-          <div className={`mb-[60px] flex w-full ${isExpanded ? 'justify-start' : 'justify-center'}`}>
+          <button 
+            type="button"
+            onClick={() => setSelectedNav('home')}
+            className={`mb-[60px] flex w-full bg-transparent border-0 p-0 cursor-pointer hover:opacity-80 transition-opacity ${isExpanded ? 'justify-start' : 'justify-center'}`}
+          >
             <img src={logoShort} alt="RSA" className={`h-8 w-auto ${isExpanded ? 'hidden' : 'block'}`} />
             <img src={logoFull} alt="RightStepAhead" className={`h-7 w-auto ${isExpanded ? 'block' : 'hidden'}`} />
-          </div>
+          </button>
 
           {/* Navigation Items */}
           <div className="flex-1 flex w-full justify-center">
@@ -122,7 +127,12 @@ export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '
 
         {/* Main Content Pane */}
         <main className="flex-1 bg-[#0e0f13] relative overflow-hidden">
-          {currentRoute === '#home' && selectedNav === 'pathway' && (
+          
+          {selectedNav === 'home' && (
+            <div className="w-full h-full bg-[#0e0f13]"></div>
+          )}
+
+          {selectedNav === 'pathway' && !isPathwayActive && (
             <section className="absolute inset-0 overflow-hidden bg-[#0e0f13] flex flex-col justify-center responsive-scale">
               <img className="absolute inset-0 w-full h-full object-cover object-right opacity-90" src={pathwayBg} alt="" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#0e0f13] via-[#0e0f13]/90 via-[45%] to-[#0e0f13]/5" />
@@ -139,14 +149,18 @@ export const HomePage: React.FC<{ currentRoute?: string }> = ({ currentRoute = '
                 <h1 className="mt-3 w-full max-w-[720px] font-['Outfit',sans-serif] font-bold text-[24px] md:text-[28px] lg:text-[30px] leading-[1.25] text-transparent bg-clip-text bg-gradient-to-r from-[#002af4] via-[#02d9dd] via-[55%] to-[#5bb947]">
                   Start with your aspiration. We'll help you build the path to get there.
                 </h1>
-                <a className="mt-8 lg:mt-10 p-0 border-0 bg-transparent cursor-pointer inline-block hover:opacity-90 transition-opacity" href="#untitled-path">
+                <button 
+                  type="button"
+                  className="mt-8 lg:mt-10 p-0 border-0 bg-transparent cursor-pointer inline-block hover:opacity-90 transition-opacity" 
+                  onClick={() => setIsPathwayActive(true)}
+                >
                   <img src={createNewBtn} alt="Create New Aspiration" className="block w-[180px] md:w-auto" />
-                </a>
+                </button>
               </div>
             </section>
           )}
 
-          {currentRoute === '#untitled-path' && (
+          {selectedNav === 'pathway' && isPathwayActive && (
             <UntitledPathView />
           )}
         </main>

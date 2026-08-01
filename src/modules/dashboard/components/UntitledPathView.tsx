@@ -359,10 +359,10 @@ export const UntitledPathView: React.FC = () => {
         {/* Worklab Toggle Button (on border) */}
         <button
           type="button"
-          className={`absolute z-30 top-12 right-0 p-0 bg-transparent border-0 cursor-pointer flex items-center justify-center hover:opacity-80 transition-transform ${isWorklabOpen ? 'translate-x-1/2' : ''}`}
+          className={`absolute z-30 top-0 right-0 p-0 bg-transparent border-0 cursor-pointer flex items-center justify-center hover:opacity-80 transition-transform ${isWorklabOpen ? 'translate-x-1/2' : ''}`}
           onClick={() => setIsWorklabOpen(!isWorklabOpen)}
         >
-          <img src={iconWorklab} alt="Toggle Worklab" className="w-[38px] h-[39px]" />
+          <img src={iconWorklab} alt="Toggle Worklab" className={`w-[38px] h-[39px] transition-transform duration-300 ${isWorklabOpen ? '-scale-x-100' : ''}`} />
         </button>
 
         {/* Engine Header */}
@@ -488,7 +488,10 @@ export const UntitledPathView: React.FC = () => {
                         </button>
                         <button
                           className="px-[14px] py-[8px] rounded-full border border-[#00494a] bg-transparent text-[#00dcdf] font-['Outfit',sans-serif] font-medium text-[13px] cursor-pointer hover:bg-[#00dcdf]/10 transition-colors"
-                          onClick={() => setIsRoadmapGenerated(true)}
+                          onClick={() => {
+                            setIsRoadmapGenerated(true);
+                            if (msg.role) setPathTitle(msg.role);
+                          }}
                         >
                           Add to Canvas
                         </button>
